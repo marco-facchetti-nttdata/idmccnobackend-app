@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: idmccnobackend-test
+  namespace: argocd
+
+spec:
+
+  project: default
+
+  source:
+    repoURL: https://github.com/<TUO-UTENTE>/idmccnobackend-app.git
+    targetRevision: main
+    path: k8s/overlays/local-test
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ccno-test
+
+  syncPolicy:
+
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
