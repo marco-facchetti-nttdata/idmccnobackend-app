@@ -10,7 +10,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/<TUO-UTENTE>/idmccnobackend-app.git
+    repoURL: https://github.com/marco-facchetti-nttdata/idmccnobackend-app.git
     targetRevision: main
     path: k8s/overlays/local-test
 
