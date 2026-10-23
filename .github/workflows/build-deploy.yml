@@ -1,0 +1,70 @@
+name: Build and Deploy IdmCCNOBackend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - "Dockerfile"
+      - ".dockerignore"
+      - ".github/workflows/build-deploy.yml"
+
+permissions:
+  contents: write
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+
+      - name: Generate image tag
+        run: |
+          IMAGE_TAG=$(git rev-parse --short HEAD)
+          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
+
+
+      - name: Build image
+        run: |
+          docker build \
+            -t localhost:5001/idmccnobackend-app:${IMAGE_TAG} \
+            .
+
+
+      - name: Push image
+        run: |
+          docker push \
+            localhost:5001/idmccnobackend-app:${IMAGE_TAG}
+
+
+      - name: Update Kustomize image
+        run: |
+          sed -i \
+            "s/newTag: .*/newTag: ${IMAGE_TAG}/" \
+            k8s/overlays/local-test/kustomization.yaml
+
+
+      - name: Commit deployment configuration
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add k8s/overlays/local-test/kustomization.yaml
+
+          if git diff --cached --quiet; then
+            echo "No deployment changes"
+            exit 0
+          fi
+
+          git commit -m "Deploy idmccnobackend ${IMAGE_TAG}"
+          git push
