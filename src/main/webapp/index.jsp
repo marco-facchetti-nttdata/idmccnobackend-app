@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="box">
-    <h1>IdmCCNOBackend v.0.2</h1>
+    <h1>IdmCCNOBackend v.0.3</h1>
     <h2>Versione deployata tramite GitHub Actions + Argo CD</h2>
     <p>Applicazione JSP deployata come WAR su Docker/Tomcat.</p>
     <p>Server time: <%= new java.util.Date() %></p>
