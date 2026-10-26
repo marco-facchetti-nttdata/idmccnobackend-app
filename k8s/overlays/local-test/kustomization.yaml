@@ -9,7 +9,7 @@ resources:
 images:
   - name: idmccnobackend-app
     newName: localhost:5001/idmccnobackend-app
-    newTag: 6e97ad3
+    newTag: cae7a23
 
 replicas:
   - name: idmccnobackend
