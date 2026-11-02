@@ -12,7 +12,7 @@ images:
 
   - name: idmccnobackend-app
     newName: localhost:5001/idmccnobackend-app
-    newTag: manual-test
+    newTag: 445219b
 
 replicas:
 
