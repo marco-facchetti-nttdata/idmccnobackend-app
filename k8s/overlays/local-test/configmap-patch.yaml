@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: idmccnobackend-config
+
+data:
+  DB_HOST: "172.18.0.1"
+  DB_PORT: "3307"

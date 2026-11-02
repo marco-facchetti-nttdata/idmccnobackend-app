@@ -18,3 +18,6 @@ replicas:
 
   - name: idmccnobackend
     count: 1
+
+patches:
+  - path: configmap-patch.yaml
