@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: idmccnobackend-config
+
+data:
+
+  SPRING_PROFILES_ACTIVE: "container"
+
+  DB_HOST: "mysql"
+  DB_PORT: "3306"
+
+  DB_NAME: "IDMCCNO"
+  DB_USER: "idmccno"
+
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "none"
+
+  KEYCLOAK_BASE_URL: "http://keycloak:8080"
+  KEYCLOAK_REALM: "IdmCCNO"

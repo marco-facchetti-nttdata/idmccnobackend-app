@@ -5,6 +5,7 @@ metadata:
   name: idmccnobackend
 
 spec:
+
   selector:
     app: idmccnobackend
 

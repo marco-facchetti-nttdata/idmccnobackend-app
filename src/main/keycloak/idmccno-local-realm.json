@@ -1,0 +1,45 @@
+{
+  "realm": "idmccno-local",
+  "displayName": "IDM CCNO Local",
+  "enabled": true,
+  "registrationAllowed": false,
+  "clients": [
+    {
+      "clientId": "idmccnobackend",
+      "name": "IDM CCNO Backend Local",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "idmccnobackend-local-secret",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "webOrigins": [
+        "http://localhost:8080"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "local-test-user",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "local-test-user@example.test",
+      "firstName": "Local",
+      "lastName": "Tester",
+      "attributes": {
+        "coopId": ["1"],
+        "fidelityCards": ["9999999999999"]
+      },
+      "credentials": [
+        {
+          "type": "password",
+          "value": "local-test-password",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

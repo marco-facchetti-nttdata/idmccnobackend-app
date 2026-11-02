@@ -18,7 +18,9 @@ spec:
 
     spec:
       containers:
+
         - name: idmccnobackend
+
           image: idmccnobackend-app
 
           imagePullPolicy: Always
@@ -26,11 +28,22 @@ spec:
           ports:
             - containerPort: 8080
 
+          envFrom:
+            - configMapRef:
+                name: idmccnobackend-config
+
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: idmccnobackend-secret
+                  key: DB_PASSWORD
+
           resources:
             requests:
               cpu: "100m"
-              memory: "128Mi"
+              memory: "256Mi"
 
             limits:
-              cpu: "500m"
-              memory: "512Mi"
+              cpu: "1000m"
+              memory: "1Gi"
